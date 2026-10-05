@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  ai-restoration:
+    build: .
+    image: ai-ultrahd-restoration:latest
+    container_name: ai_restoration_hub
+    restart: unless-stopped
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./weights:/workspace/weights
+      - ./outputs:/workspace/web_out
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - PYTHONUNBUFFERED=1

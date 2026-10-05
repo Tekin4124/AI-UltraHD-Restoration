@@ -1,0 +1,13 @@
+weights/
+outputs/
+web_in/
+web_out/
+*.png
+*.jpg
+*.jpeg
+*.ckpt
+*.safetensors
+*.pth
+__pycache__/
+*.log
+.venv/
