@@ -21,7 +21,7 @@ Bu proje, fotoğrafları bozmadan, plastikleştirmeden ve bulanıklaştırmadan 
 Projeyi sunucuya çekip tek komutla her şeyi başlatabilirsiniz:
 
 ```bash
-git clone <SENIN_GITHUB_REPO_LINKIN>
+git clone https://github.com/Tekin4124/AI-UltraHD-Restoration.git
 cd AI-UltraHD-Restoration
 chmod +x start_on_server.sh
 ./start_on_server.sh
@@ -43,3 +43,14 @@ Tarayıcınızdan açın: `http://localhost:7860`
 - **👖 Kumaş / Doku / Kot Pantolon Modu:** SUPIR 3x (CFG 4.0, Wavelet Renk Düzeltme) + Real-ESRGAN 2x hibrit. Lif lif dikiş ve kumaş dokusu üretir (~40-50 MB dosya boyutu).
 - **👤 Portre / Yüz Modu:** CodeFormer (w=0.75) + Real-ESRGAN 4x. Yüz kimliğini koruyarak pürüzsüz ve keskin yüz çıktısı verir.
 - **⚡ Hızlı SUPIR 2x Modu:** Hızlı genel nesne ve manzara keskinleştirme.
+
+---
+
+## 🙏 Teşekkürler & Referanslar (Acknowledgements)
+
+Bu proje, açık kaynak yapay zeka topluluğunun harika çalışmalarını bir araya getiren bir pipeline ve arayüz çözümüdür:
+- **[SUPIR](https://github.com/Fanghua-Yu/SUPIR)** — Scaling-Up Text-to-Image Diffusion Models for Photorealistic Image Restoration
+- **[CodeFormer](https://github.com/sczhou/CodeFormer)** — Robust Face Restoration Algorithm for Real-World Scenarios
+- **[Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN)** — Practical Algorithms for General Image Restoration
+- **[Qwen 2.5](https://github.com/QwenLM/Qwen2.5)** — Powerful LLM by Alibaba Cloud used for prompt engineering
+- **[Stability AI SDXL](https://github.com/Stability-AI/generative-models)** — Foundation text-to-image diffusion architecture
