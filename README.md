@@ -36,6 +36,8 @@ docker compose up -d
 
 Tarayıcınızdan açın: `http://localhost:7860`
 
+> 🔒 **Güvenlik Notu (Opsiyonel):** Sunucuda WebUI'ı parola ile korumak isterseniz `GRADIO_USER` ve `GRADIO_PASSWORD` ortam değişkenlerini tanımlayabilirsiniz (`export GRADIO_USER=admin GRADIO_PASSWORD=sifreniz`).
+
 ---
 
 ## 🎯 Restorasyon Modları

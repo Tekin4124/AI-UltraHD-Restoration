@@ -226,4 +226,15 @@ with gr.Blocks(title="AI Ultra HD Restoration Hub") as demo:
         outputs=[out_img, out_file, status_box]
     )
 
-demo.queue().launch(server_name="0.0.0.0", server_port=7860, share=False, allowed_paths=["/workspace"])
+    # Opsiyonel kimlik doğrulama (sunucuda çalıştırma için)
+    auth_user = os.getenv("GRADIO_USER")
+    auth_pass = os.getenv("GRADIO_PASSWORD")
+    auth_config = (auth_user, auth_pass) if (auth_user and auth_pass) else None
+
+    demo.queue().launch(
+        server_name="0.0.0.0",
+        server_port=7860,
+        share=False,
+        auth=auth_config,
+        allowed_paths=["/workspace"]
+    )
