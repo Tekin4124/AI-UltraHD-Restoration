@@ -38,7 +38,7 @@ RUN chmod +x /workspace/download_weights.sh
 # RUN /workspace/download_weights.sh
 
 # Uygulama kodlarını kopyalayalım
-COPY app.py /workspace/app.py
+COPY app.py webui_security.py /workspace/
 
 WORKDIR /workspace
 

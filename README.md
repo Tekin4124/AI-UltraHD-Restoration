@@ -18,7 +18,7 @@ Bu proje; düşük çözünürlüklü, eski veya bulanık fotoğrafları plastik
 
 ### Yöntem 1: Yeni Bir GPU Sunucusunda (Vast.ai / RunPod / Ubuntu + CUDA)
 
-Projeyi sunucuya çekip tek komutla her şeyi başlatabilirsiniz:
+Projeyi sunucuya çekip başlatabilirsiniz. Varsayılan WebUI yalnız `127.0.0.1:7860` üzerinde dinler; uzak sunucuya SSH tüneliyle bağlanabilirsiniz:
 
 ```bash
 git clone https://github.com/Tekin4124/AI-UltraHD-Restoration.git
@@ -26,17 +26,31 @@ cd AI-UltraHD-Restoration
 chmod +x start_on_server.sh
 ./start_on_server.sh
 ```
-> Bu script PyTorch, CUDA 12.4 xFormers, SUPIR, CodeFormer ve Qwen modellerini otomatik kurar ve port 7860 üzerinden WebUI'ı başlatır.
+> Bu script PyTorch, CUDA 12.4 xFormers, SUPIR, CodeFormer ve Qwen modellerini otomatik kurar. SSH tüneli: `ssh -L 7860:127.0.0.1:7860 kullanici@sunucu`, ardından bilgisayarınızda `http://localhost:7860`.
+
+Doğrudan dış ağda dinletmek gerekiyorsa başlamadan önce `GRADIO_SERVER_NAME=0.0.0.0`, `GRADIO_USER` ve `GRADIO_PASSWORD` tanımlayın. Dış erişimi HTTPS sağlayan bir proxy arkasında sunun.
 
 ### Yöntem 2: Docker ile Çalıştırma
 
 ```bash
-docker compose up -d
+export GRADIO_USER=admin
+read -rs -p 'WebUI parolası: ' GRADIO_PASSWORD
+echo
+export GRADIO_PASSWORD
+docker compose up -d --build
 ```
 
 Tarayıcınızdan açın: `http://localhost:7860`
 
-> 🔒 **Güvenlik Notu (Opsiyonel):** Sunucuda WebUI'ı parola ile korumak isterseniz `GRADIO_USER` ve `GRADIO_PASSWORD` ortam değişkenlerini tanımlayabilirsiniz (`export GRADIO_USER=admin GRADIO_PASSWORD=sifreniz`).
+Compose iki giriş değişkenini konteynere aktarır; eksik veya boş ayarlarda başlatmayı reddeder. Host portu yalnız `127.0.0.1` üzerinde yayınlanır. Uzak erişim için SSH tüneli veya HTTPS proxy kullanın.
+
+Her iki değişken doğrudan çalıştırmada isteğe bağlıdır ancak biri tanımlandıysa diğeri de zorunludur. Dış ağ adresinde parola olmadan başlatma reddedilir. İndirilebilir dosya alanı yalnız `web_out/` dizinidir; modeller, kod ve loglar bu alana konulmamalıdır. Parolayı Git'e eklemeyin; `.env` dosyaları yok sayılır.
+
+Güvenlik ayarı testleri GPU ve model indirme gerektirmez:
+
+```bash
+python3 -m unittest discover -s tests
+```
 
 ---
 

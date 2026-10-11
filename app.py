@@ -1,5 +1,11 @@
-import gradio as gr
 import os
+from webui_security import launch_options
+
+# Reject incomplete or unsafe settings before loading GPU models.
+WORKSPACE = "/workspace"
+LAUNCH_OPTIONS = launch_options(WORKSPACE)
+
+import gradio as gr
 import subprocess
 import shutil
 import time
@@ -8,7 +14,6 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from PIL import Image
 
-WORKSPACE = "/workspace"
 IN_DIR = os.path.join(WORKSPACE, "web_in")
 OUT_DIR = os.path.join(WORKSPACE, "web_out")
 SUPIR_LOG = os.path.join(WORKSPACE, "supir_exec.log")
@@ -226,15 +231,4 @@ with gr.Blocks(title="AI Ultra HD Restoration Hub") as demo:
         outputs=[out_img, out_file, status_box]
     )
 
-    # Opsiyonel kimlik doğrulama (sunucuda çalıştırma için)
-    auth_user = os.getenv("GRADIO_USER")
-    auth_pass = os.getenv("GRADIO_PASSWORD")
-    auth_config = (auth_user, auth_pass) if (auth_user and auth_pass) else None
-
-    demo.queue().launch(
-        server_name="0.0.0.0",
-        server_port=7860,
-        share=False,
-        auth=auth_config,
-        allowed_paths=["/workspace"]
-    )
+demo.queue().launch(**LAUNCH_OPTIONS)
