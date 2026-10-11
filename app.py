@@ -36,7 +36,7 @@ def generate_diffusion_prompt(user_text, current_mode):
             "Translate the user's request into a highly detailed ENGLISH diffusion prompt. "
             "CRITICAL RULES: "
             "1. Output MUST BE 100% IN ENGLISH. NO TURKISH WORDS ALLOWED. "
-            "2. Ensure you include: hair (individual strands), face (skin pores), t-shirt, clothing, leggings, and denim jeans (fabric weave). "
+            "2. Ensure you include: fine micro textures, natural materials, sharp details, skin pores, hair strands, realistic lighting, and depth. "
             "3. Add 'ultra sharp, hyper-detailed texture, 8k uhd, masterpiece' to the end. "
             "4. Only output the comma-separated English prompt, no other text."
         )
@@ -63,7 +63,7 @@ def generate_diffusion_prompt(user_text, current_mode):
         return update_prompt_default(current_mode)
 
 def update_prompt_default(mode):
-    return "ultra sharp macro photo, highly detailed fabric twill weave, individual hair strands, skin pores, t-shirt texture, denim jeans threading, leggings material, realistic texture, razor sharp focus, 8k uhd photorealistic"
+    return "ultra sharp photo, hyper-detailed natural texture, micro details, realistic lighting, fine material weave, razor sharp focus, 8k uhd photorealistic masterpiece"
 
 def run_cmd_with_logging(cmd, cwd, log_file, progress_cb=None, desc_prefix="İşleniyor"):
     with open(log_file, "w") as f:
@@ -118,7 +118,7 @@ def process_image(input_img, mode, user_request, prompt_text, cfg_val, steps_val
         
     final_output_path = None
     
-    upscale_ratio = "3" if "Kot Pantolon" in mode or "Kumaş" in mode else "2"
+    upscale_ratio = "3" if "Doku" in mode or "Kumaş" in mode or "Detay" in mode else "2"
     
     progress(0.1, desc=f"Adım 1/2: SUPIR {upscale_ratio}x Difüzyon başlıyor (Geniş Kare İzleri Yok Edildi)...")
     supir_out = os.path.join(OUT_DIR, "supir")
@@ -185,18 +185,18 @@ with gr.Blocks(title="AI Ultra HD Restoration Hub") as demo:
             
             mode = gr.Radio(
                 choices=[
-                    "Kumaş / Doku / Nesne (Kot Pantolon Modu: SUPIR 3x + RealESRGAN -> 40+ MB)",
-                    "Portre / Yüz Koruma (Soldier Boy Modu: CodeFormer + RealESRGAN 4x)",
-                    "SUPIR 2x Makro Difüzyon (Hızlı Detay)"
+                    "Yüksek Doku & Makro Detay (SUPIR 3x + RealESRGAN -> Ultra HD)",
+                    "Portre & Yüz Restorasyonu (CodeFormer + RealESRGAN 4x)",
+                    "Hızlı Genel Restorasyon (SUPIR 2x Difüzyon)"
                 ],
-                value="Kumaş / Doku / Nesne (Kot Pantolon Modu: SUPIR 3x + RealESRGAN -> 40+ MB)",
+                value="Yüksek Doku & Makro Detay (SUPIR 3x + RealESRGAN -> Ultra HD)",
                 label="🎯 Restorasyon Modu"
             )
             
             with gr.Group():
                 user_req_box = gr.Textbox(
                     label="🗣️ Ne Yapılsın? (Doğal Türkçe İstek)",
-                    placeholder="Örn: resimdeki saçları, tişörtü, taytı ve kot pantolonu analiz et ve hepsini aşırı netleştir...",
+                    placeholder="Örn: eski fotoğraftaki greni ve bulanıklığı gider, kumaş/nesne dokusunu ve yüz detaylarını netleştir...",
                     lines=3
                 )
                 ai_prompt_btn = gr.Button("✨ Qwen AI ile Difüzyon Promptu Oluştur", variant="secondary")

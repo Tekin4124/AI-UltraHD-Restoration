@@ -1,15 +1,15 @@
 # 🚀 AI Ultra HD Super-Resolution & Restoration Hub
 
-Bu proje, fotoğrafları bozmadan, plastikleştirmeden ve bulanıklaştırmadan **mikro dokulara, kumaş liflerine ve cilt gözeneklerine kadar** 4K/8K (20 MB - 60 MB) boyutlarında kristal netliğinde restore eden hepsi-bir-arada yapay zeka sistemidir.
+Bu proje; düşük çözünürlüklü, eski veya bulanık fotoğrafları plastikleştirmeden ve yapaylaştırmadan **mikro dokulara, yüzey desenlerine, saç tellerine ve cilt gözeneklerine kadar** 4K/8K kalitesinde kristal netliğinde restore eden hepsi-bir-arada yapay zeka restorasyon merkezidir.
 
 ---
 
 ## 🌟 Neler İçerir?
 
-1. **SUPIR (SDXL Diffusion Tabanlı Restorasyon):** Fotoğrafı körü körüne büyütmez; dikişleri, kumaş liflerini, saç tellerini ve mikro dokuları fotogerçekçi difüzyonla yeniden inşa eder.
-2. **Qwen 2.5 AI Prompt Engineer:** Doğal Türkçe isteklerinizi (Örn: *"fotoğraftaki adamın kot pantolonunu netleştir ve kumaşı aşırı belirgin yap"*) otomatik olarak difüzyon modelinin en iyi anlayacağı profesyonel İngilizce yönlendirici prompta çevirir.
-3. **Real-ESRGAN x2 / x4:** Kristal netlikte 4800px+ çözünürlük ölçekleme.
-4. **CodeFormer:** Yüz portrelerinde kimliği ve yüz hatlarını bozmadan göz, kirpik ve sakal restorasyonu.
+1. **SUPIR (SDXL Diffusion Tabanlı Fotogerçekçi Restorasyon):** Fotoğrafı sadece pikselleri büyüterek bulanıklaştırmaz; mikro dokuları, yüzey desenlerini ve ince ayrıntıları fotogerçekçi difüzyon mimarisiyle yeniden inşa eder.
+2. **Qwen 2.5 LLM Prompt Engineer:** Doğal Türkçe isteklerinizi (Örn: *"fotoğraftaki detayları keskinleştir, arka plan grenini temizle ve nesne dokularını belirginleştir"*) analiz ederek difüzyon modelinin en iyi anlayacağı profesyonel İngilizce yönlendirici prompta çevirir.
+3. **Real-ESRGAN x2 / x4:** Kristal netlikte 4800px+ çözünürlük ölçekleme ve arka plan keskinleştirme.
+4. **CodeFormer:** Yüz portrelerinde kimliği ve yüz hatlarını bozmadan göz, kirpik, cilt ve sakal restorasyonu.
 5. **Gradio WebUI:** Tarayıcıdan tek tıkla fotoğraf yükleme, mod seçme ve indirme arayüzü.
 
 ---
@@ -40,9 +40,9 @@ Tarayıcınızdan açın: `http://localhost:7860`
 
 ## 🎯 Restorasyon Modları
 
-- **👖 Kumaş / Doku / Kot Pantolon Modu:** SUPIR 3x (CFG 4.0, Wavelet Renk Düzeltme) + Real-ESRGAN 2x hibrit. Lif lif dikiş ve kumaş dokusu üretir (~40-50 MB dosya boyutu).
-- **👤 Portre / Yüz Modu:** CodeFormer (w=0.75) + Real-ESRGAN 4x. Yüz kimliğini koruyarak pürüzsüz ve keskin yüz çıktısı verir.
-- **⚡ Hızlı SUPIR 2x Modu:** Hızlı genel nesne ve manzara keskinleştirme.
+- **🎨 Yüksek Doku & Makro Detay Modu:** SUPIR 3x (Wavelet Renk Düzeltme) + Real-ESRGAN hibrit mimarisi. Nesneler, kumaşlar, mimari ve doğa fotoğraflarında derinlemesine doku rekonstrüksiyonu (~40-50 MB kristal netlikte çıktı).
+- **👤 Portre & Yüz Restorasyon Modu:** CodeFormer (w=0.75) + Real-ESRGAN 4x. Portrelerde yüz kimliğini bozmadan göz, kirpik ve doğal cilt hatlarını restore eder.
+- **⚡ Hızlı Genel Restorasyon:** SUPIR 2x difüzyon ile genel görüntü keskinleştirme ve gürültü giderme.
 
 ---
 
