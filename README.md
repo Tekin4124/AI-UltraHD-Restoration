@@ -5,6 +5,20 @@ Fotoğraf restorasyonu için SUPIR, Real-ESRGAN ve CodeFormer modellerini tek Gr
 **NVIDIA GPU ve CUDA gerekir.** Mevcut sürüm bir CPU/ARM VPS üzerinde doğrudan çalışacak şekilde hazırlanmadı. Üretilen ayrıntılar model tahmini olabilir; kaynak fotoğrafta kaybolan bilgilerin doğruluğu garanti edilmez.
 ---
 
+## İş akışı
+
+```mermaid
+flowchart LR
+    A[Fotoğraf + kullanıcı isteği] --> B[Gradio]
+    B --> C[Qwen / prompt hazırlığı]
+    C --> D[SUPIR restorasyonu]
+    D --> E[Real-ESRGAN / CodeFormer araçları]
+    E --> F[İndirilebilir çıktı]
+```
+
+Bu bir mimari şemadır; model çıktısı değildir. GPU üzerinde doğrulanmış önce/sonra görselleri henüz bu depoya eklenmedi.
+
+
 ## Bileşenler
 
 1. **SUPIR (SDXL Diffusion Tabanlı Fotogerçekçi Restorasyon):** Fotoğrafı sadece pikselleri büyüterek bulanıklaştırmaz; mikro dokuları, yüzey desenlerini ve ince ayrıntıları fotogerçekçi difüzyon mimarisiyle yeniden inşa eder.
