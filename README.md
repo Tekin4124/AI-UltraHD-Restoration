@@ -1,20 +1,21 @@
-# 🚀 AI Ultra HD Super-Resolution & Restoration Hub
+# AI Ultra HD Restoration
 
-Bu proje; düşük çözünürlüklü, eski veya bulanık fotoğrafları plastikleştirmeden ve yapaylaştırmadan **mikro dokulara, yüzey desenlerine, saç tellerine ve cilt gözeneklerine kadar** 4K/8K kalitesinde kristal netliğinde restore eden hepsi-bir-arada yapay zeka restorasyon merkezidir.
+Fotoğraf restorasyonu için SUPIR, Real-ESRGAN ve CodeFormer modellerini tek Gradio arayüzünde birleştiren Python uygulaması. Qwen, Türkçe istekleri restorasyon promptlarına dönüştürür.
 
+**NVIDIA GPU ve CUDA gerekir.** Mevcut sürüm bir CPU/ARM VPS üzerinde doğrudan çalışacak şekilde hazırlanmadı. Üretilen ayrıntılar model tahmini olabilir; kaynak fotoğrafta kaybolan bilgilerin doğruluğu garanti edilmez.
 ---
 
-## 🌟 Neler İçerir?
+## Bileşenler
 
 1. **SUPIR (SDXL Diffusion Tabanlı Fotogerçekçi Restorasyon):** Fotoğrafı sadece pikselleri büyüterek bulanıklaştırmaz; mikro dokuları, yüzey desenlerini ve ince ayrıntıları fotogerçekçi difüzyon mimarisiyle yeniden inşa eder.
 2. **Qwen 2.5 LLM Prompt Engineer:** Doğal Türkçe isteklerinizi (Örn: *"fotoğraftaki detayları keskinleştir, arka plan grenini temizle ve nesne dokularını belirginleştir"*) analiz ederek difüzyon modelinin en iyi anlayacağı profesyonel İngilizce yönlendirici prompta çevirir.
-3. **Real-ESRGAN x2 / x4:** Kristal netlikte 4800px+ çözünürlük ölçekleme ve arka plan keskinleştirme.
-4. **CodeFormer:** Yüz portrelerinde kimliği ve yüz hatlarını bozmadan göz, kirpik, cilt ve sakal restorasyonu.
+3. **Real-ESRGAN x2 / x4:** x2/x4 çözünürlük ölçekleme ve arka plan keskinleştirme.
+4. **CodeFormer:** Yüz portrelerinde yüz restorasyonu; sonuçlar görsel olarak kontrol edilmelidir.
 5. **Gradio WebUI:** Tarayıcıdan tek tıkla fotoğraf yükleme, mod seçme ve indirme arayüzü.
 
 ---
 
-## ⚡ Hızlı Kurulum
+## Kurulum
 
 ### Yöntem 1: Yeni Bir GPU Sunucusunda (Vast.ai / RunPod / Ubuntu + CUDA)
 
@@ -54,15 +55,15 @@ python3 -m unittest discover -s tests
 
 ---
 
-## 🎯 Restorasyon Modları
+## Restorasyon modları
 
-- **🎨 Yüksek Doku & Makro Detay Modu:** SUPIR 3x (Wavelet Renk Düzeltme) + Real-ESRGAN hibrit mimarisi. Nesneler, kumaşlar, mimari ve doğa fotoğraflarında derinlemesine doku rekonstrüksiyonu (~40-50 MB kristal netlikte çıktı).
-- **👤 Portre & Yüz Restorasyon Modu:** CodeFormer (w=0.75) + Real-ESRGAN 4x. Portrelerde yüz kimliğini bozmadan göz, kirpik ve doğal cilt hatlarını restore eder.
+- **🎨 Yüksek Doku & Makro Detay Modu:** SUPIR 3x (Wavelet Renk Düzeltme) + Real-ESRGAN hibrit mimarisi. Nesneler, kumaşlar, mimari ve doğa fotoğraflarında derinlemesine doku rekonstrüksiyonu .
+- **👤 Portre & Yüz Restorasyon Modu:** CodeFormer (w=0.75) + Real-ESRGAN 4x. Portrelerde yüz ve arka planı restore eder; özellikle yüz ayrıntılarını kaynak fotoğrafla karşılaştırın.
 - **⚡ Hızlı Genel Restorasyon:** SUPIR 2x difüzyon ile genel görüntü keskinleştirme ve gürültü giderme.
 
 ---
 
-## 🙏 Teşekkürler & Referanslar (Acknowledgements)
+## Kaynak projeler
 
 Bu proje, açık kaynak yapay zeka topluluğunun harika çalışmalarını bir araya getiren bir pipeline ve arayüz çözümüdür:
 - **[SUPIR](https://github.com/Fanghua-Yu/SUPIR)** — Scaling-Up Text-to-Image Diffusion Models for Photorealistic Image Restoration
